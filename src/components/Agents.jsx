@@ -11,7 +11,7 @@ const Agents= () => {
 
   useEffect(() => {
     const fetchLogs = () => {
-      fetch('http://localhost:5000/logs')
+      fetch('https://trip-recommend.onrender.com/logs')
         .then(response => response.json())
         .then(data => {
           if (data.logs.length > 0) {
@@ -32,7 +32,7 @@ const Agents= () => {
     }
 
     try {
-      await fetch('http://localhost:5000/analyze', {
+      await fetch('https://trip-recommend.onrender.com/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -45,7 +45,7 @@ const Agents= () => {
       });
 
       const pollCrewResult = setInterval(() => {
-        fetch(`http://localhost:5000/crew_result?category=${category}&budget=${budget}&num_people=${numPeople}&trip_type=${tripType}&month=${month}`)
+        fetch(`https://trip-recommend.onrender.com/crew_result?category=${category}&budget=${budget}&num_people=${numPeople}&trip_type=${tripType}&month=${month}`)
           .then(response => response.json())
           .then(data => {
             if (data.crew_result !== "Result not available yet.") {
