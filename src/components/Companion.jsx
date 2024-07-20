@@ -16,7 +16,7 @@ const Companion = () => {
         if (!message.trim()) return; // Avoid sending empty messages
 
         try {
-            const res = await axios.post('https://companion-ybvo.onrender.com', {
+            const res = await axios.post('https://companion-u6wy.onrender.com/chat', {
                 message,
                 history: chatHistory,
                 cityName
