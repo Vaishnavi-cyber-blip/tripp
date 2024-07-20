@@ -7,14 +7,14 @@ const News = () => {
   const [news, setNews] = useState([]);
   const [error, setError] = useState('');
 
-  const news_api_key = process.env.REACT_APP_NEWS_API_KEY;
+  const api_key = import.meta.env.VITE_APP_NEWS_API_KEY;
 
   const getNews = async (city) => {
     try {
       const response = await axios.get('https://newsapi.org/v2/everything', {
         params: {
           qInTitle: city,
-          apiKey: news_api_key,
+          apiKey: api_key,
           language: 'en',
           sortBy: 'publishedAt',
         },

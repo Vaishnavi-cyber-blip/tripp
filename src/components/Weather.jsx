@@ -10,7 +10,7 @@ const Weather = () => {
   const [error, setError] = useState('');
   const [weatherType, setWeatherType] = useState('Current');
 
-  const weather_api_key = process.env.REACT_APP_WEATHER_API_KEY;;
+  const weather_api_key = import.meta.env.VITE_APP_WEATHER_API_KEY;
 
   const fetchWeather = async () => {
     try {
