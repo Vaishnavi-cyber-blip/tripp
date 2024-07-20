@@ -6,6 +6,9 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaUserFriends, FaMicrophone, FaClipboardList } from 'react-icons/fa';
+ // Correct if Weather.jsx is in the same directory
+
+
 
 const LandingPage = () => {
   const { cityName, setCityName } = useCity(); // Use the useCity hook to access global state
