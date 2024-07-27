@@ -8,11 +8,11 @@ const indiaBackground = '/assets/wall6.png';
 
 const LandingPage = () => {
   const openItineraryApp = () => {
-    window.open('https://your-itinerary-streamlit-app-url', '_blank');
+    window.open('https://itinerary-t5ug.onrender.com', '_blank');
   };
 
   const openRecommendationsApp = () => {
-    window.open('https://your-recommendations-streamlit-app-url', '_blank');
+    window.open('https://recommender-1-3cx5.onrender.com', '_blank');
   };
 
   return (
@@ -26,7 +26,7 @@ const LandingPage = () => {
       }}
     >
       <header className="flex flex-col items-center mb-0">
-        <img src={logo} alt="Logo" className="h-48 w-48 -mt-20" />
+        <img src={logo} alt="Logo" className="h-48 w-48 -mt-20 " />
       </header>
 
       <h2 className="text-base lg:text-2xl mb-10 -mt-5 text-center text-custom-purple">
