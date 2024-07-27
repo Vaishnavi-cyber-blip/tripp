@@ -117,7 +117,7 @@ const Companion = () => {
       ]);
       // Send initial request to check city validity
       try {
-        const res = await axios.post('http://127.0.0.1:5000/chat', {
+        const res = await axios.post('https://guide-kg5h.onrender.com/chat', {
           message: '',
           history: [],
           cityName,
