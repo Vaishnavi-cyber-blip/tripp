@@ -1,25 +1,25 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
-// import './App.css';  // Import custom styles
+
 
 const News = () => {
   const [city, setCity] = useState('');
   const [news, setNews] = useState([]);
   const [error, setError] = useState('');
 
-  const news_api_key = import.meta.env.VITE_APP_NEWS_API_KEY;
-
   const getNews = async (city) => {
     try {
-      const response = await axios.get('https://newsapi.org/v2/everything', {
-        params: {
-          qInTitle: city,
-          apiKey: news_api_key,
-          language: 'en',
-          sortBy: 'publishedAt',
-        },
-      });
-      setNews(response.data.articles);
+      const params = new URLSearchParams({
+        api_token: import.meta.env.VITE_APP_NEWS_API_KEY, // Use the environment variable
+        locale: 'in',
+        language: 'en',
+        search: city,
+      }).toString();
+
+      const response = await axios.get(`https://api.thenewsapi.com/v1/news/top?${params}`);
+
+      setNews(response.data.data);
       setError('');
     } catch (err) {
       setError('Error fetching news. Please try again.');
@@ -35,9 +35,9 @@ const News = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <header className="text-4xl font-bold text-gray-800 mb-8">Be Updated!</header>
-      <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-8 rounded-full shadow-md flex items-center">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-custom-image bg-cover bg-center p-4">
+      <header className="text-4xl font-bold text-custom-purple mb-8">News Update</header>
+      <form onSubmit={handleSubmit} className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md flex items-center">
         <input
           type="text"
           value={city}
@@ -47,7 +47,7 @@ const News = () => {
         />
         <button
           type="submit"
-          className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-r-full focus:outline-none focus:shadow-outline"
+          className="bg-custom-purple hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-r-full focus:outline-none focus:shadow-outline"
         >
           SEND
         </button>
@@ -60,13 +60,13 @@ const News = () => {
               {news.map((article, index) => (
                 <li key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <a href={article.url} target="_blank" rel="noopener noreferrer" className="block hover:shadow-xl transition-shadow duration-300">
-                    {article.urlToImage && (
-                      <img src={article.urlToImage} alt={article.title} className="w-full h-48 object-cover" />
+                    {article.image_url && (
+                      <img src={article.image_url} alt={article.title} className="w-full h-48 object-cover" />
                     )}
                     <div className="p-4">
                       <div className="flex justify-between items-center mb-2">
                         <span className="bg-gray-200 text-gray-800 text-xs font-bold px-2 py-1 rounded-full">Latest</span>
-                        <span className="text-gray-500 text-xs">{new Date(article.publishedAt).toLocaleTimeString()}</span>
+                        <span className="text-gray-500 text-xs">{new Date(article.published_at).toLocaleTimeString()}</span>
                       </div>
                       <h3 className="text-xl font-bold text-gray-800 mb-2">{article.title}</h3>
                       <p className="text-gray-600">{article.description}</p>
@@ -84,3 +84,5 @@ const News = () => {
 };
 
 export default News;
+
+

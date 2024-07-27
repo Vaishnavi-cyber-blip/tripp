@@ -5,8 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'custom-image': "url('/assets/wall6.png')", // Add your image path here
+      },
+      colors: {
+        'custom-purple': '#004aad',
+      },
+    },
   },
   plugins: [],
 }
-

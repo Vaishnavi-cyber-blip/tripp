@@ -1,163 +1,73 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPlane, FaCloudSun, FaNewspaper, FaTachometerAlt } from 'react-icons/fa';
-import { useCity } from './CityContext'; // Import the useCity hook
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { FaUserFriends, FaMicrophone, FaClipboardList } from 'react-icons/fa';
- // Correct if Weather.jsx is in the same directory
+import { AiOutlineRobot, AiOutlineCalendar, AiOutlineStar } from 'react-icons/ai';
+import { FaCloudSun, FaNewspaper } from 'react-icons/fa';
 
-
+const logo = '/assets/logo.png';
+const indiaBackground = '/assets/wall6.png';
 
 const LandingPage = () => {
-  const { cityName, setCityName } = useCity(); // Use the useCity hook to access global state
-  const [inputCity, setInputCity] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      setCityName(inputCity); // Set the city name in global state
-      setInputCity(''); // Reset the input field
-    } catch (error) {
-      console.error('Error setting city name:', error);
-    }
+  const openItineraryApp = () => {
+    window.open('https://your-itinerary-streamlit-app-url', '_blank');
   };
 
-  const carouselImages = [
-    {
-      category: 'Mountains',
-      url: 'https://i1.wp.com/www.zingbus.com/blog/wp-content/uploads/2023/03/The-Himalayas-1024x683.jpg?ssl=1'
-    },
-    {
-      category: 'Beaches',
-      url: 'https://www.thestatesman.com/wp-content/uploads/2023/12/winter-beach-escapes.jpg'
-    },
-    {
-      category: 'Heritage',
-      url: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Fatehput_Sikiri_Buland_Darwaza_gate_2010.jpg'
-    },
-    {
-      category: 'Pilgrimage',
-      url: 'https://plus.unsplash.com/premium_photo-1697730324062-c012bc98eb13?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-    {
-      category: 'Long Drive',
-      url: 'https://images.nativeplanet.com/webp/img/2023/10/alt-text-serene-landscapes-of-north-indian-roads_1696497105727-600x338-20231005145213.jpg'
-    },
-    {
-      category: 'Adventure',
-      url: 'https://www.revv.co.in/blogs/wp-content/uploads/2020/08/rafting_image8.jpg'
-    },
-  ];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
+  const openRecommendationsApp = () => {
+    window.open('https://your-recommendations-streamlit-app-url', '_blank');
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-cover bg-center" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D)' }}>
-      {/* Sidebar */}
-      <div className="w-full lg:w-64 bg-white text-black flex flex-col p-4 shadow-lg lg:fixed lg:h-full">
-        <div className="text-2xl font-bold mb-4">Trip Bharat</div>
-        <nav className="flex-1 space-y-4">
-          <Link to="/agents" className="flex items-center space-x-2 p-2 rounded hover:bg-yellow-400 transition duration-300">
-            <FaTachometerAlt />
-            <span>Recommendations</span>
-          </Link>
-          <Link to="/itinerary" className="flex items-center space-x-2 p-2 rounded hover:bg-yellow-400 transition duration-300">
-            <FaPlane />
-            <span>Itinerary Planner</span>
-          </Link>
-          <Link to="/weather" className="flex items-center space-x-2 p-2 rounded hover:bg-yellow-400 transition duration-300">
-            <FaCloudSun />
-            <span>Weather</span>
-          </Link>
-          <Link to="/news" className="flex items-center space-x-2 p-2 rounded hover:bg-yellow-400 transition duration-300">
-            <FaNewspaper />
-            <span>News Updates</span>
-          </Link>
-        </nav>
-      </div>
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center p-4 lg:p-8 bg-opacity-75 bg-gray-900 text-white lg:ml-64">
-        <header className="text-3xl lg:text-5xl font-bold mb-3 text-center mt-10">Let AI Assist Plan Your Trip</header>
-        <h2 className="text-lg lg:text-xl mb-8 text-center">Experience the best trip planning with personalized recommendations.</h2>
+    <div
+      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${indiaBackground})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+      }}
+    >
+      <header className="flex flex-col items-center mb-0">
+        <img src={logo} alt="Logo" className="h-48 w-48 -mt-20" />
+      </header>
 
-        {/* City input form */}
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row mb-8 w-full max-w-lg mx-auto mt-4">
-          <input
-            type="text"
-            placeholder="You are travelling to..."
-            value={inputCity}
-            onChange={(e) => setInputCity(e.target.value)}
-            className="bg-white text-black py-2 px-4 rounded-t-md sm:rounded-l-md sm:rounded-t-none outline-none flex-grow"
-          />
-          <button type="submit" className="bg-yellow-500 text-black py-2 px-6 rounded-b-md sm:rounded-r-md sm:rounded-b-none hover:bg-yellow-600 transition duration-300 mt-2 sm:mt-0">
-            Set City
-          </button>
-        </form>
+      <h2 className="text-base lg:text-2xl mb-10 -mt-5 text-center text-custom-purple">
+        Discover India with the lens of AI.
+      </h2>
 
-        {/* Buttons to navigate */}
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
-        <Link to="/companion" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center">
-            <FaUserFriends size={22} />
+      <div className="flex space-x-4">
+        <Link
+          to="/companion"
+          className="w-12 h-12 p-2 rounded-full bg-custom-purple text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
+        >
+          <AiOutlineRobot size={24} />
         </Link>
-        <Link to="/voicechat" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center">
-            <FaMicrophone size={22} />
+        <button
+          onClick={openItineraryApp}
+          className="w-12 h-12 p-2 rounded-full bg-custom-purple text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
+        >
+          <AiOutlineCalendar size={24} />
+        </button>
+        <button
+          onClick={openRecommendationsApp}
+          className="w-12 h-12 p-2 rounded-full bg-custom-purple text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
+        >
+          <AiOutlineStar size={24} />
+        </button>
+        <Link
+          to="/weather"
+          className="w-12 h-12 p-2 rounded-full bg-custom-purple text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
+        >
+          <FaCloudSun size={24} />
         </Link>
-        <Link to="/plan" className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center">
-            <FaClipboardList size={22} color="black" />
+        <Link
+          to="/news"
+          className="w-12 h-12 p-2 rounded-full bg-custom-purple text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
+        >
+          <FaNewspaper size={24} />
         </Link>
-        </div>
-
-        {/* Carousel */}
-        <div className="relative w-full max-w-4xl mb-8 mt-10">
-          <Slider {...settings}>
-            {carouselImages.map((image, index) => (
-              <div key={index} className="relative w-64 h-64 flex-shrink-0 bg-gray-200 rounded overflow-hidden shadow-lg mx-4">
-                <img
-                  src={image.url}
-                  alt={image.category}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-center py-2">
-                  {image.category}
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
-        
       </div>
     </div>
   );
 };
 
 export default LandingPage;
+
