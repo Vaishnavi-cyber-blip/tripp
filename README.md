@@ -1,5 +1,5 @@
 # Trip Bharat
-AI powered travel assistant.
+**Trip Bharat** is an AI-powered travel application designed to provide a seamless and personalized travel experience across India. Whether you're planning a trip or exploring local destinations, Trip Bharat serves as your intelligent travel companion, offering expert insights and recommendations tailored to your preferences.
 
 ![Screenshot 2024-07-30 205829](https://github.com/user-attachments/assets/aa3770dc-3e62-4f53-acff-25092e05f0be)
 
