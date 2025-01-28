@@ -75,7 +75,7 @@ import Weather from './Weather'; // Import the Weather component
 import News from './News'; // Import the News component
 import { FaPaperPlane, FaCloudSun, FaNewspaper } from 'react-icons/fa';
 
-const indiaBackground = '/assets/wall6.png'; // Use relative path from public directory
+const indiaBackground = '/assets/wall6.png'; 
 
 const Companion = () => {
   const [cityName, setCityName] = useState('');
@@ -85,7 +85,7 @@ const Companion = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [activeTab, setActiveTab] = useState('chat'); // State to manage active tab
 
-  const UNSPLASH_API_KEY = import.meta.env.VITE_APP_UNSPLASH_API_KEY; // Replace with your Unsplash API key
+  const UNSPLASH_API_KEY = import.meta.env.VITE_APP_UNSPLASH_API_KEY; 
   ; // Replace with your Unsplash API key
 
   const fetchCityImages = async (city) => {
@@ -144,7 +144,7 @@ const Companion = () => {
     setMessage(e.target.value);
   };
 
-  // Handle sending a message when the send button is clicked
+  
   const handleSendMessage = async () => {
     if (!message.trim() || !cityName.trim()) return;
 
